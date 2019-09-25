@@ -155,4 +155,35 @@ public class SpartanRest_Weekend {
         System.out.println(spartanMap.get("phone"));
         assertEquals("Nels",spartanMap.get("name"));
     }
+    @Test
+    public void all_SpartanList_map(){
+
+        // TO STORE SPARTAN AS LIST OF MAP
+        Response response = get("/spartans/");
+
+       List<Map<String,Object>>ListOfMap= response.jsonPath().getList("");
+
+       // System.out.println(ListOfMap);
+
+        for (Map<String,Object>each:ListOfMap) {
+            System.out.println(each);
+
+        }
+    }
+
+    @Test
+    public void Search_Spartanc_ListOfMap(){
+        Response response =
+                given().accept(ContentType.JSON).
+                        queryParam("gender", "Female").
+                        get("/spartans/search");
+
+        List<Map<String,Object>>ListOfMap= response.jsonPath().getList("content");
+        for (Map<String,Object>each:ListOfMap) {
+            System.out.println(each);
+
+        }
+
+
+    }
 }
