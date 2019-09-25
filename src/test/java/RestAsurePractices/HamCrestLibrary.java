@@ -9,6 +9,9 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.matcher.RestAssuredMatchers.*;
 import static org.junit.Assert.*;
+
+
+
 public class HamCrestLibrary {
 
 
@@ -47,10 +50,9 @@ public class HamCrestLibrary {
                 contentType(ContentType.JSON).
                 statusCode(200).
                         body("id",equalTo(2)).
-                        body("gender",equalTo("Male"))
-                        //body("phone",hasToString("4218971348" +
+                        body("gender",equalTo("Male")).
+                        body("phone",hasToString("4218971348"));
 
-                        ;
 
 
              //response.prettyPrint();

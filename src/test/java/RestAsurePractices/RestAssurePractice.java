@@ -62,16 +62,18 @@ public class RestAssurePractice {
 
         // 1st approach to test header exists is by checking the value is null or not
         Response response = RestAssured.get("/hello");
-//        String headerValue = response.getHeader("Date");
-//        System.out.println(headerValue);
-//        assertNotNull(headerValue);
+        String headerValue = response.getHeader("Date");
+        System.out.println(headerValue);
+       // assertNotNull(headerValue);
 
         // 2nd approach : use existing method
         boolean dateHeaderExists = response.getHeaders().hasHeaderWithName("Date");
+
         assertTrue(dateHeaderExists);
 
         assertEquals("17", response.getHeader("content-length"));
 
+        System.out.println(response.getHeader("content-length"));
         response.prettyPrint();
     }
 
