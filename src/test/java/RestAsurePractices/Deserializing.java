@@ -32,17 +32,32 @@ public class Deserializing {
 
         //first way
 
-      Spartan spartan=  get("/spartans/10").jsonPath().prettyPeek()
-              .getObject("",Spartan.class);
+      Spartan2 spartan=  get("/spartans/10").jsonPath()//.prettyPeek()
+              .getObject("",Spartan2.class);
         System.out.println(spartan);
 
 
         //Second way we do not use map just use as and path the class where u want to store it
-        Spartan sp2=get("/spartans/15").prettyPeek().as(Spartan.class);
+        Spartan2 sp2=get("/spartans/15")//.prettyPeek()
+                .as(Spartan2.class);
         System.out.println(sp2);
 
 
     }
+    @Test
+    public void Add_new_spartan_NAME_Negative_test() {
 
+        Spartan2 spartan = new Spartan2("Bale", "Female", 1223234545);
+
+
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .body(spartan)
+                .when().post("/spartans/")
+                .then()
+                .statusCode(201)
+        ;
+    }
 
 }
